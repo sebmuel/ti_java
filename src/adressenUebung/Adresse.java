@@ -1,4 +1,5 @@
 package adressenUebung;
+import java.util.Scanner;
 
 public class Adresse {
 
@@ -7,11 +8,11 @@ public class Adresse {
     private String ort;
     private String plz;
 
-    public Adresse(String vorname, String nachname, String ort, String plz){
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.ort = ort;
-        this.plz = plz;
+    public Adresse(){
+        this.vorname = getInput("Vorname");
+        this.nachname = getInput("Nachname");
+        this.ort = getInput("Ort");
+        this.plz = getInput("Plz");
     }
 
     public String getVorname(){
@@ -44,5 +45,12 @@ public class Adresse {
 
     public void setPlz(String plz) {
         this.plz = plz;
+    }
+
+    private static String getInput(String type){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Bitte " + type + " eingeben: ");
+        return input.nextLine();
+
     }
 }
