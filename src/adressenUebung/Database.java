@@ -1,15 +1,17 @@
 package adressenUebung;
+import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class Database {
 
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/inventarisierung?";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/adressen?";
     private static final String DB_USERNAME = "seb";
     private static final String DB_PASSWORD = "Hallodu123";
     private static Connection connection;
 
-    public static void initConnection(){
+    private static void initConnection(){
         Connection conn  = null;
         try {
             conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -17,16 +19,42 @@ public class Database {
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
             System.exit(1);
         }
     }
-    public static void store(String statement) throws SQLException {
-        ResultSet resultSet = null;
-        Statement stmt = Database.connection.createStatement();
-        if (stmt.execute("SELECT * FROM Inventar")){
-            resultSet = stmt.getResultSet();
+
+    private static void closeConnection(){
+        try{
+            Database.connection.close();
+        }catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
         }
     }
+
+    public static void storeAdress(Adresse adresse){
+        // create Connection Instance
+        Database.initConnection();
+        // collect Adress object attributes
+        String vorname = adresse.getVorname();
+        String nachname = adresse.getNachname();
+        String ort = adresse.getOrt();
+        String plz = adresse.getPlz();
+
+        // write statement
+        String stmt = String.format(
+                "INSERT INTO Adressen(vorname, nachname, ort, plz) VALUES ('%s', '%s', '%s', '%s')",
+                vorname, nachname, ort, plz
+        );
+        try{
+            // try to execute the statement
+            Statement statement = Database.connection.createStatement();
+            statement.executeUpdate(stmt);
+        }
+        catch (SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+        }finally {
+            Database.closeConnection();
+        }
+    }
+
 }

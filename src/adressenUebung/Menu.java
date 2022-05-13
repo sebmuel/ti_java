@@ -27,7 +27,5 @@ public class Menu {
         option = scanner.nextLine();
         return option;
     }
-
-
 }
 

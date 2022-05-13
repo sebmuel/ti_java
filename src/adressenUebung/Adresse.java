@@ -1,12 +1,13 @@
 package adressenUebung;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Adresse {
 
-    private String vorname;
-    private String nachname;
-    private String ort;
-    private String plz;
+    private final String vorname;
+    private final String nachname;
+    private final String ort;
+    private final String plz;
 
     public Adresse(){
         this.vorname = getInput("Vorname");
@@ -31,26 +32,18 @@ public class Adresse {
         return this.plz;
     }
 
-    public void setVorname(String vorname){
-        this.vorname = vorname;
-    }
-
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
     private static String getInput(String type){
         Scanner input = new Scanner(System.in);
-        System.out.println("Bitte " + type + " eingeben: ");
-        return input.nextLine();
+        String inputValue;
+        do {
+            System.out.println("Bitte " + type + " eingeben: ");
+            while (!input.hasNext("[a-zA-Z0-9/]+")){
+                System.out.println("Ungültige eingabe für den " + type + " versuchen sie es erneut:");
+                input.next();
+            }
+            inputValue = input.next();
+        }while(inputValue.length() < 3);
 
+        return inputValue;
     }
 }
