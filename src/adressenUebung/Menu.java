@@ -10,9 +10,12 @@ public class Menu {
             AdressListe.updateList();
             View.menuItems();
             String choice = Menu.menuChoice();
-
             switch (choice) {
-                case "1" -> Database.update(new Adresse());
+                case "1" -> Database.update(new Adresse(
+                        Adresse.getInput("Vorname"),
+                        Adresse.getInput("Nachname"),
+                        Adresse.getInput("Ort"),
+                        Adresse.getInput("Plz")));
                 case "2" -> {
                     View.clearConsole();
                     View.output();

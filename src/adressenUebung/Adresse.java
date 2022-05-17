@@ -10,12 +10,12 @@ public class Adresse {
     private final String plz;
 
     // constructor for saving an adress prompted by user
-    public Adresse(){
+    public Adresse(String vorname, String nachname, String ort, String plz){
         this.id = 0;
-        this.vorname = getInput("Vorname");
-        this.nachname = getInput("Nachname");
-        this.ort = getInput("Ort");
-        this.plz = getInput("Plz");
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.ort = ort;
+        this.plz = plz;
     }
 
     // constructor for
@@ -47,7 +47,7 @@ public class Adresse {
         return this.id;
     }
 
-    private static String getInput(String type){
+    static String getInput(String type){
         Scanner input = new Scanner(System.in);
         String inputValue;
         do {
@@ -59,7 +59,6 @@ public class Adresse {
             inputValue = input.nextLine();
         }while(inputValue.length() < 3);
 
-        System.out.println(inputValue);
         return inputValue;
     }
 }
