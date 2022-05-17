@@ -1,19 +1,20 @@
 package adressenUebung;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AdressListe {
-    private final ArrayList<Adresse> adressListe = new ArrayList<>();
-
-    public void output(){
-        for (Adresse adr : this.adressListe){
-            System.out.println(adr.getVorname());
-            System.out.println(adr.getNachname());
-            System.out.println(adr.getOrt());
-            System.out.println(adr.getPlz());
+public  class AdressListe {
+    private static ArrayList<Adresse> adressListe;
+    static {
+        try {
+            adressListe = Database.loadAdresses();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
-
-    public void save(){
-        this.adressListe.add(new Adresse());
+    static void updateList() throws SQLException {
+        AdressListe.adressListe = Database.loadAdresses();
+    }
+    static ArrayList<Adresse> getAdressListe(){
+        return AdressListe.adressListe;
     }
 }

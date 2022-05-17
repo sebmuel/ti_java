@@ -1,19 +1,30 @@
 package adressenUebung;
 import java.util.Scanner;
-import java.util.regex.Pattern;
+
 
 public class Adresse {
-
+    private final int id;
     private final String vorname;
     private final String nachname;
     private final String ort;
     private final String plz;
 
+    // constructor for saving an adress prompted by user
     public Adresse(){
+        this.id = 0;
         this.vorname = getInput("Vorname");
         this.nachname = getInput("Nachname");
         this.ort = getInput("Ort");
         this.plz = getInput("Plz");
+    }
+
+    // constructor for
+    public Adresse(int id, String vorname, String nachname, String ort, String plz){
+        this.id = id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.ort = ort;
+        this.plz = plz;
     }
 
     public String getVorname(){
@@ -32,6 +43,10 @@ public class Adresse {
         return this.plz;
     }
 
+    int getId(){
+        return this.id;
+    }
+
     private static String getInput(String type){
         Scanner input = new Scanner(System.in);
         String inputValue;
@@ -39,11 +54,12 @@ public class Adresse {
             System.out.println("Bitte " + type + " eingeben: ");
             while (!input.hasNext("[a-zA-Z0-9/]+")){
                 System.out.println("Ungültige eingabe für den " + type + " versuchen sie es erneut:");
-                input.next();
+                input.nextLine();
             }
-            inputValue = input.next();
+            inputValue = input.nextLine();
         }while(inputValue.length() < 3);
 
+        System.out.println(inputValue);
         return inputValue;
     }
 }
