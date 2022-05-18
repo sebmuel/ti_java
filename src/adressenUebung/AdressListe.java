@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public  class AdressListe {
     private static ArrayList<Adresse> adressListe;
+
     static {
         try {
             adressListe = Database.loadAdresses();

@@ -9,6 +9,7 @@ public class View {
         messages.put("noEntries", "Keine Einträge gefunden");
         messages.put("inputNotValid", "Keine gültige eingaben");
         messages.put("promptUserInput", "Ihre Auswahl: ");
+        messages.put("deletePrompt", "Geben sie die ID der Adresse ein welche Sie löschen möchten: ");
         messages.put("noRecordsFound", "Keine Adresse mit der entsprechenden ID gefunden!");
     }
     static void menuItems(){

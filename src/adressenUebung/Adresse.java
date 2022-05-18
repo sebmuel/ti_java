@@ -30,15 +30,12 @@ public class Adresse {
     public String getVorname(){
         return this.vorname;
     }
-
     public String getNachname(){
         return this.nachname;
     }
-
     public String getOrt(){
         return this.ort;
     }
-
     public String getPlz(){
         return this.plz;
     }
@@ -46,7 +43,6 @@ public class Adresse {
     int getId(){
         return this.id;
     }
-
     static String getInput(String type){
         Scanner input = new Scanner(System.in);
         String inputValue;
