@@ -1,10 +1,9 @@
-package konto.classes;
+package Kontoverwaltung.classes;
 
 import javax.swing.*;
 public class MainMenu {
     private static final JMenu[] menuPoints;
     private static final JMenuBar menuBar;
-
     static{
         // init array with length 2
         menuPoints = new JMenu[2];
@@ -27,12 +26,7 @@ public class MainMenu {
         }
 
     }
-
-    public static JMenu[] getMenuPoints() {
-        return menuPoints;
-    }
-
-    public JMenuBar getMenuBar() {
+   public static JMenuBar getMenuBar() {
         return menuBar;
     }
 }
